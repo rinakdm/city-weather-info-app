@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="main-content">
+        <h2>City and Weather Information App</h2>
+        <form [formGroup]="searchForm" (submit)="sendToWeatherAPI(searchForm.value)">
+            <mat-form-field class="mat-focused">
+                <input formControlName="location" type="text" placeholder="City"
+                    aria-label="Number" required matInput />
+                <mat-error *ngIf="searchForm.controls.location.touched && searchForm.controls.location.invalid"></mat-error>
+            </mat-form-field>
+            <button mat-raised-button type="submit" color="accent" [disabled]="!searchForm.valid">
+                SEARCH
+                <mat-icon>search</mat-icon>
+            </button>
+        </form>
+
+        <mat-spinner [diameter]="80" class="my-mat-spinner" *ngIf="startLoading===true"></mat-spinner>
+
+        <div class="main-detail-container" *ngIf="isSearchSuccess===true">
+            <img src='{{this.weatherData.current.weather_icons}}' alt='weather' />
+            <h2>{{this.weatherData.current.weather_descriptions}} in {{this.weatherData.location.name}},
+                {{this.weatherData.location.country}}</h2>
+
+            <div class="card-section">
+                <div class="weather-city-details">
+                    <h3>City Details</h3>
+                    <p>City: {{this.weatherData.location.name}}</p>
+                    <p>Country: {{this.weatherData.location.country}}</p>
+                    <p>Region: {{this.weatherData.location.region}}</p>
+                    <p>Local Time: {{this.weatherData.location.localtime}}</p>
+                    <p>Latitude: {{this.weatherData.location.lat}}</p>
+                </div>
+                <div class="weather-city-details">
+                    <h3>Current Weather Details</h3>
+                    <p>Current weather condition: {{this.weatherData.current.weather_descriptions}}</p>
+                    <p>Current humidity condition: {{this.weatherData.current.humidity}}</p>
+                    <p>Current Temperature in degrees: {{this.weatherData.current.temperature}}</p>
+                    <p>Feels like: {{this.weatherData.current.feelslike}}</p>
+                    <p>Is Day: {{this.weatherData.current.is_day}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-failed" *ngIf="isSearchFailed===true">
+            <img src="../../assets/error-icon.png" alt="error-icon">
+            <h3>Sorry, No Result Found. Please search other city.</h3>
+        </div>
+    </div>
+</div>

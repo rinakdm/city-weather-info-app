@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/SimulateEmailSendingApp'),
+      dir: require('path').join(__dirname, './coverage/city-weather-info-app'),
       subdir: '.',
       reporters: [
         { type: 'html' },
