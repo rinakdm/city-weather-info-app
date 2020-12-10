@@ -8,8 +8,13 @@ export class WeatherDataService {
   constructor(private http: HttpClient) {}
 
   getWeatherDetails(location) {
-    return this.http.get(
-      data.apiurl + '?access_key='+ data.api_key +'&query=' + location
-    );
+    try{
+      return this.http.get(
+        data.apiurl + '?access_key='+ data.api_key +'&query=' + location
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    
   }
 }
