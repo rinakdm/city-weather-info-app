@@ -1,0 +1,4 @@
+{
+    "apiurl": "http://api.weatherstack.com/forecast",
+    "api_key": "df8fd8c2a5fba814a9793556e960dd0d"
+}
